@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Loading from './components/Loading/Loading';
+import Tours from './components/Tours/Tours';
+
+const URL = 'https://course-api.com/react-tours-project';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [tours, setTours] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchTour = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(URL);
+            const data = await response.json();
+            setLoading(false);
+            setTours(data);
+        } catch (error) {
+            setLoading(false);
+            console.log(error);
+        }
+    };
+
+    const removeTour = (id) => {
+        const newTours = tours.filter((tour) => tour.id !== id);
+        setTours(newTours);
+    };
+
+    useEffect(() => {
+        fetchTour();
+    }, []);
+
+    if (loading) {
+        return (
+            <main>
+                <Loading />
+            </main>
+        );
+    }
+
+    if (tours.length === 0) {
+        return (
+            <main>
+                <section className="title">
+                    <h3>No Tours Found</h3>
+                    <button
+                        className="btn refresh-btn"
+                        onClick={() => fetchTour()}
+                    >
+                        Refresh
+                    </button>
+                </section>
+            </main>
+        );
+    }
+
+    return (
+        <main>
+            <Tours tours={tours} removeTour={removeTour} />
+        </main>
+    );
 }
 
 export default App;

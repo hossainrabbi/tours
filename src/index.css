@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+:root {
+    --light-color: #f1f5f8;
+    --dark-color: #353535;
+    --primary-color: #c95e06;
+    --danger-color: #ac1313;
+    --text-color: #758696;
+    --bg-color: #ffffff;
+    --main-shadow: 0 3px 5px #00000010;
+    --hover-shadow: 0 3px 15px #0000001f;
+    --transition: 0.3s;
+    --max-width: 650px;
+    --radius: 3px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*** Common Tag Style ***/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+main {
+    width: 95vw;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dark-color);
+    letter-spacing: 1.2px;
+    text-transform: capitalize;
+}
+
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.1rem;
+}
+
+img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    background-color: transparent;
+}
+
+/*** Common ClassName & Style ***/
+.text-center {
+    text-align: center;
+}
+
+.under-line {
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.more-btn {
+    color: var(--primary-color);
+    margin-left: 5px;
+}
+
+.btn {
+    padding: 5px 20px;
+    margin-top: 1rem;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.remove-btn {
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.remove-btn:hover {
+    color: var(--light-color);
+    background-color: var(--danger-color);
+}
+
+.refresh-btn {
+    color: var(--light-color);
+    background-color: var(--primary-color);
+}
+
+.refresh-btn:hover {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
 }
